@@ -171,7 +171,7 @@ def view():
         for k in lst:
             if k['price_alert'] is None:
                 lst.remove(k)
-        return render_template('show_alerts.html',uname=uname,lst=lst)
+        return render_template('show_alerts.html',uname=[uname],lst=lst)
 
 
 @celery.task
