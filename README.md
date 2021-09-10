@@ -20,3 +20,4 @@
 ![Third](Pic4.png 'Authentication')
 * Then viewing the alerts
 ![Fourth](Pic1.png 'Viewing alerts')
+
