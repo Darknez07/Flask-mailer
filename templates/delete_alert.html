@@ -1,0 +1,14 @@
+<html>
+    <head></head>
+    <body>
+        <form method="post" action="/alerts/delete">
+            Currency
+            <select name="currency">
+                {% for lq, lw in lst %}
+            <option value="{{ lq }}">{{ lw }}</option>
+                {% endfor %}
+        </select>
+            <input type="submit" />
+        </form>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+    <head></head>
+    <body>
+        <form method="POST" action="/alerts/create">
+        <select name="currency">
+            {% for val,val2 in lst %}
+            <option value="{{ val }}">{{ val2 }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="price" placeholder="Price of Coin" />
+        <input type="submit" />
+    </form>
+    </body>
+</html>
