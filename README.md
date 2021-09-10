@@ -13,4 +13,10 @@
 * Used JWT tokens and expires after 20 minutes
 * Need to create user first then access the token
 * Screen Shots here
-![First_ss](Create_user.jpg 'User creation')
+![First_ss](Pic6.jpg 'User creation')
+* Using postman for authentication token
+![Second](Pic5.png 'Authentication')
+* A view of Authenticated token
+![Third](Pic4.png 'Authentication')
+* Then viewing the alerts
+![Fourth](Pic1.png 'Viewing alerts')
