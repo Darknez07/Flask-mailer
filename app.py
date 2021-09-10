@@ -168,6 +168,9 @@ def view():
         if bcrypt.hashpw(passw.encode('ascii'), res['password']) != res['password']:
             return "<h1> R-Enter the password/ Username </h1>"
         lst = db.execute('select * from alerts where username=?',[uname]).fetchall()
+        for k in lst:
+            if k['price_alert'] is None:
+                lst.remove(k)
         return render_template('show_alerts.html',lst=lst)
 
 
