@@ -1,0 +1,20 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Price alerts for {{ uname }}</h1>
+        <table>
+            <tr>
+                <th>Price alert</th>
+                <th>Currency </th>
+                <th>Date Added</th>
+            </tr>
+            {% for alert in lst %}
+            <tr>
+                <td> {{ alert['price_alert'] }} </td>
+                <td> {{ alert['currency'] }} </td>
+                <td> {{ alert['time_created'] }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

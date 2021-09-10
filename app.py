@@ -2,14 +2,24 @@ from flask import Flask, request, jsonify, make_response, render_template
 import jwt
 import datetime
 from functools import wraps
-from Users import access_database, get_list
+from Users import access_database, get_list, update
 import bcrypt
+from celery import Celery
+from flask_mail import Mail, Message
+from datetime import timedelta
 
 
 app = Flask(__name__)
+
 app.config["SECRET_KEY"] = "First app"
+app.config["CELERY_BROKER_URL"] = 'amqp://test:test@localhost:5672'
+app.config["CELERY_RESULT_BACKEND"] = 'db+sqlite:///db/celery.db'
 
+mail = Mail(app)
 
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+
+@celery.task
 def token_request(r):
     @wraps(r)
     def verify(*args, **kwargs):
@@ -28,7 +38,9 @@ def token_request(r):
 
 @app.route("/alerts/create", methods=["POST", "GET"])
 @token_request
+@celery.task
 def create_alerts():
+    check_updates()
     if request.method == "GET":
         return render_template("select_alert.html", lst=get_list())
     else:
@@ -63,6 +75,7 @@ def create_alerts():
 
 @app.route("/alerts/delete", methods=["POST",'GET'])
 @token_request
+@celery.task
 def delete_alerts():
     if request.method == 'GET':
         return render_template('delete_alert.html',lst=get_list())
@@ -70,12 +83,17 @@ def delete_alerts():
         token = request.headers["Authorization"].split(" ")[-1]
         currency = request.form['currency']
         db = access_database()
-        db.execute('delete from alerts where token_id=? and currency=?',[token,currency])
+        uname = db.execute('select username from users where token_id=?',[token]).fetchone()['username']
+        check = db.execute('select * from alerts where currency=? and username=?',[currency, uname]).fetchone()
+        if not check:
+            return "Not found"
+        db.execute('delete from alerts where currency=? and username=?',[currency,uname])
         db.commit()
-        return "<h2> Deleted at {} from user updates </h2>".format(12312)
+        return "Record deleted"
 
 
 @app.route("/auth")
+@celery.task
 def create_token():
 
     auth = request.authorization
@@ -114,6 +132,7 @@ def create_token():
 
 
 @app.route("/create/user", methods=["POST", "GET"])
+@celery.task
 def create_user():
     if request.method == "GET":
         return render_template("user_details.html")
@@ -131,9 +150,43 @@ def create_user():
             )
             db.commit()
         except:
-            return "Not possible"
+            return "Already a username exists"
         return "Done"
 
+
+@app.route('/view/alerts',methods=['POST','GET'])
+@token_request
+@celery.task
+def view():
+    if request.method == 'GET':
+        return render_template('get_details.html')
+    else:
+        uname = request.form['username']
+        passw = request.form['password']
+        db = access_database()
+        res = db.execute('select * from users where username=?',[uname]).fetchall()[-1]
+        if bcrypt.hashpw(passw.encode('ascii'), res['password']) != res['password']:
+            return "<h1> R-Enter the password/ Username </h1>"
+        lst = db.execute('select * from alerts where username=?',[uname]).fetchall()
+        return render_template('show_alerts.html',lst=lst)
+
+
+@celery.task
+def check_updates():
+    print("Hello")
+    db = access_database()
+    ans = db.execute('select * from alerts;').fetchall()
+    for a in ans:
+        if not a['price_alert'] or not update(a['currency']):
+            break
+        print(a['price_alert']/update(a['currency']))
+        if a['price_alert']/update(a['currency']) <= 1.000012412:
+            q = db.execute('select email from users where username=?',[a['username']]).fetchone()
+            print(q['email'])
+        else:
+            print("Updated")
+            continue
+    return "Somethign"
 
 if __name__ == "__main__":
     app.run(debug=True)
