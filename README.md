@@ -20,5 +20,7 @@
 ![Third](Pic4.png 'Authentication')
 * Then viewing the alerts
 ![Fourth](Pic1.png 'Viewing alerts')
-* Then for For creating alerts
-![Fifth](Pic7.png 'Create alerts')
+Just do pip install -r requirements.txt
+and then python app.py
+Also  will run celery clusters
+
