@@ -1,7 +1,16 @@
 # Flask-mailer
 * This is the task of creating an API for scheduling mails
 * Celery container has called "CELERY BEAT SCHEDULER" which does not work with windows
-
+# My approach
+* I created the 5 routes
+* JWT tokens
+* View alerts need login
+* Create user
+* For each of those users we provide token
+* Token is valid for 20 mins
+* Token create alert queries are stored
+#### Following diagram explains clearly
+![Routes](SS/Routes.jpg 'Explaination of approach')
 ## Run the Code
 #### Just do pip install -r requirements.txt
 
