@@ -24,5 +24,6 @@
 * Then viewing the alerts
 ![Fourth](Pic1.png 'Viewing alerts')
 * Then for creating alerts
+* First trying without token is futile
 ![Fifth](Pic7.png 'Creating alerts')
 
