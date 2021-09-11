@@ -15,7 +15,7 @@
 ## Note running celery as well as app on different terminals
 * python app.py
 * Runs on debug mode
-![Terminal](SS/Pic7.PNG 'App.py')
+![Terminal](SS/Pic7.png 'App.py')
 ### Most importantly It has 5 routes
 #### First create/users
 #### Second alerts/create
