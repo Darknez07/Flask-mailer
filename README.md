@@ -34,6 +34,8 @@
 ![Second](SS/Pic5.png 'Authentication')
 * A view of Authenticated token
 ![Third](SS/Pic4.png 'Authentication')
+* We need to sign in
+![Mid](SS/For_alerts.PNG 'Authenticate to view')
 * Then viewing the alerts
 ![Fourth](SS/Pic1.png 'Viewing alerts')
 * Then for creating alerts
@@ -44,4 +46,4 @@
 * Finally After token
 ![Seventh](SS/Submit_query.PNG 'Submit the create alert')
 * Then coming to delete alert
-
+![Eigth](SS/Delete_query.PNG 'Submit the create alert')
