@@ -13,6 +13,7 @@
 ![Routes](SS/Routes.jpg 'Explaination of approach')
 #### Tables are as follows
 * Foriegn key is username
+* Email is primary key because we need to send the email
 ![Tables](SS/Tables.PNG 'Tables')
 ## Run the Code
 #### Just do pip install -r requirements.txt
