@@ -7,7 +7,10 @@
 #### Third alerts/delete
 #### Fourth view/alerts
 #### Fifth /auth
-
+## Run the Code
+#### Just do pip install -r requirements.txt
+#### and then python app.py
+#### Also  will run celery clusters
 
 * Auth is for authentication token
 * Used JWT tokens and expires after 20 minutes
@@ -20,7 +23,6 @@
 ![Third](Pic4.png 'Authentication')
 * Then viewing the alerts
 ![Fourth](Pic1.png 'Viewing alerts')
-Just do pip install -r requirements.txt
-and then python app.py
-Also  will run celery clusters
+* Then for creating alerts
+![Fifth](Pic7.png 'Creating alerts')
 
