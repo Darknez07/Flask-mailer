@@ -25,6 +25,8 @@
 #### Using then command
 * celery -A app.celery worker -l INFO
 ![Celery](SS/Celery.PNG 'Celery')
+* RabbitMQ connections
+![RabbitMQ](SS/RabbitMq.PNG 'Rabbit')
 ## Note running celery as well as app on different terminals
 * python app.py
 * Runs on debug mode
