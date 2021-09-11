@@ -15,7 +15,7 @@
 ## Note running celery as well as app on different terminals
 * python app.py
 * Runs on debug mode
-![Terminal](SS/Pic7.png 'App.py')
+![Terminal](SS/Pic8.PNG 'App.py')
 ### Most importantly It has 5 routes
 #### First create/users
 #### Second alerts/create
@@ -38,7 +38,7 @@
 ![Fourth](SS/Pic1.png 'Viewing alerts')
 * Then for creating alerts
 * First trying without token is futile
-![Fifth](SS/Create_alerts.PNG 'Creating alerts')
+![Fifth](SS/Pic7.png 'Creating alerts')
 * Adding token for the creating
 ![Sixth](SS/Add_token.PNG 'Token for authentication')
 * Finally After token
