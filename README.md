@@ -11,6 +11,9 @@
 * Token create alert queries are stored
 #### Following diagram explains clearly
 ![Routes](SS/Routes.jpg 'Explaination of approach')
+#### Tables are as follows
+* Foriegn key is username
+![Tables](SS/Tables.PNG 'Tables')
 ## Run the Code
 #### Just do pip install -r requirements.txt
 
